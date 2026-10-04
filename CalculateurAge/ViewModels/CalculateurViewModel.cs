@@ -19,8 +19,18 @@
         public DateTime DateNaissance
         {
             get => _dateNaissance;
-            set => SetField(ref _dateNaissance, value);
+            set
+            {
+                if (SetField(ref _dateNaissance, value))
+                {
+                    OnPropertyChanged(nameof(DateFuture));
+                    CalculerCommand.Rafraichir();
+                }
+            }
         }
+
+        // Propriété calculée : pas de champ privé, la valeur se déduit de la date.
+        public bool DateFuture => DateNaissance.Date > DateTime.Today;
 
         public string Resultat
         {
@@ -46,8 +56,7 @@
         {
             CalculerCommand = new RelayCommand(
                 Calculer,
-                () => !string.IsNullOrWhiteSpace(Nom));
-            EffacerCommand = new RelayCommand(Effacer);
+                () => !string.IsNullOrWhiteSpace(Nom) && !DateFuture);
         }
 
         private void Calculer()
