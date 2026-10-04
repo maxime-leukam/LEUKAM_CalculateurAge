@@ -12,6 +12,7 @@
             <Button Text="Calculer" Command="{Binding CalculerCommand}" />
             <Label Text="{Binding Resultat}" FontSize="20" IsVisible="{Binding ResultatVisible}" />
             <Label Text="{Binding Message}" FontSize="18" IsVisible="{Binding ResultatVisible}"/>
+            <Button Text="Effacer" Command="{Binding EffacerCommand}"/>
         </VerticalStackLayout>
     </ScrollView>
 
