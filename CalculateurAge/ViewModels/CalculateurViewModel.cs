@@ -57,6 +57,8 @@
             CalculerCommand = new RelayCommand(
                 Calculer,
                 () => !string.IsNullOrWhiteSpace(Nom) && !DateFuture);
+
+            EffacerCommand = new RelayCommand(Effacer);
         }
 
         private void Calculer()
