@@ -7,6 +7,7 @@
             = DateTime.Today.AddYears(-20);
         private string _resultat = "";
         private bool _resultatVisible;
+        private string _message = "";
 
         public string Nom
         {
@@ -27,6 +28,11 @@
             set => SetField(ref _resultat, value);
         }
 
+        public string Message
+        {
+            get => _message;
+            set => SetField(ref _message, value);
+        }
         public bool ResultatVisible
         {
             get => _resultatVisible;
@@ -48,6 +54,7 @@
             if (DateNaissance.Date > DateTime.Today.AddYears(-age)) age--;
 
             Resultat = $"{Nom}, vous avez {age} ans.";
+            Message = age >= 18 ? "Majeur" : "Mineur";
             ResultatVisible = true;
         }
     }
